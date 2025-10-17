@@ -1,0 +1,217 @@
+{
+  "version": "2.0.0",
+  "summary": {
+    "description": "Threat model for Site24x7 IT Automation feature",
+    "id": 1,
+    "owner": "Security Team",
+    "title": "Site24x7 IT Automation Threat Model"
+  },
+  "detail": {
+    "contributors": [
+      {
+        "name": "Grok"
+      }
+    ],
+    "diagrams": [
+      {
+        "description": "High-level DFD for IT Automation workflow",
+        "diagramType": "stride",
+        "id": 0,
+        "placeholder": "Diagram",
+        "thumbnail": "thumbnail.png",
+        "title": "IT Automation Overview",
+        "version": "2.0.0",
+        "cells": [
+          {
+            "id": "entity1",
+            "shape": {
+              "type": "basic.Rect"
+            },
+            "zIndex": 1,
+            "position": {
+              "x": 50,
+              "y": 50
+            },
+            "size": {
+              "width": 120,
+              "height": 60
+            },
+            "attrs": {
+              "body": {
+                "stroke": "#000000",
+                "strokeWidth": 1,
+                "strokeDasharray": null
+              }
+            },
+            "data": {
+              "hasOpenThreats": false,
+              "name": "Cloud Services",
+              "type": "External Entity",
+              "description": "External cloud providers like AWS, Azure"
+            },
+            "threats": []
+          },
+          {
+            "id": "process1",
+            "shape": {
+              "type": "basic.Circle"
+            },
+            "zIndex": 2,
+            "position": {
+              "x": 250,
+              "y": 50
+            },
+            "size": {
+              "width": 100,
+              "height": 100
+            },
+            "attrs": {
+              "body": {
+                "stroke": "#000000",
+                "strokeWidth": 1,
+                "strokeDasharray": null
+              }
+            },
+            "data": {
+              "hasOpenThreats": true,
+              "name": "Alarms Engine",
+              "type": "Process",
+              "description": "Detects events and thresholds"
+            },
+            "threats": [
+              {
+                "description": "Unauthorized access to alarms",
+                "mitigation": "Implement RBAC",
+                "modelType": "STRIDE",
+                "number": 1,
+                "score": "High",
+                "severity": "High",
+                "status": "Open",
+                "threatId": "cc1e0dd4-1620-4905-8c20-e772559c5edb",
+                "title": "Spoofing Alarms",
+                "type": "Spoofing"
+              }
+            ]
+          },
+          {
+            "id": "store1",
+            "shape": {
+              "type": "basic.Rect"
+            },
+            "zIndex": 3,
+            "position": {
+              "x": 450,
+              "y": 50
+            },
+            "size": {
+              "width": 80,
+              "height": 60
+            },
+            "attrs": {
+              "body": {
+                "stroke": "#000000",
+                "strokeWidth": 1,
+                "strokeDasharray": null
+              }
+            },
+            "data": {
+              "hasOpenThreats": true,
+              "name": "Automation Logs",
+              "type": "Data Store",
+              "description": "Stores execution logs"
+            },
+            "threats": [
+              {
+                "description": "Leak of sensitive log data",
+                "mitigation": "Encrypt logs",
+                "modelType": "STRIDE",
+                "number": 2,
+                "score": "Medium",
+                "severity": "Medium",
+                "status": "Mitigated",
+                "threatId": "42d060e0-d90b-4779-b26e-ca2c3f93c577",
+                "title": "Information Disclosure in Logs",
+                "type": "Information Disclosure"
+              }
+            ]
+          },
+          {
+            "id": "flow1",
+            "shape": {
+              "type": "basic.Edge"
+            },
+            "zIndex": 4,
+            "position": {
+              "x": 0,
+              "y": 0
+            },
+            "size": {
+              "width": 0,
+              "height": 0
+            },
+            "attrs": {
+              "line": {
+                "stroke": "#000000",
+                "strokeWidth": 1,
+                "sourceMarker": null,
+                "strokeDasharray": null,
+                "targetMarker": {
+                  "name": "classic"
+                }
+              }
+            },
+            "data": {
+              "hasOpenThreats": false,
+              "name": "Metrics Data",
+              "type": "Data Flow",
+              "protocol": "HTTPS",
+              "isEncrypted": true
+            },
+            "source": {
+              "cell": "entity1",
+              "x": 170,
+              "y": 80
+            },
+            "target": {
+              "cell": "process1",
+              "x": 250,
+              "y": 80
+            }
+          },
+          {
+            "id": "boundary1",
+            "shape": {
+              "type": "basic.Boundary"
+            },
+            "zIndex": 0,
+            "position": {
+              "x": 200,
+              "y": 0
+            },
+            "size": {
+              "width": 300,
+              "height": 150
+            },
+            "attrs": {
+              "body": {
+                "stroke": "#FF0000",
+                "strokeWidth": 2,
+                "strokeDasharray": "5,5"
+              }
+            },
+            "data": {
+              "hasOpenThreats": false,
+              "name": "Internal Trust Boundary",
+              "type": "Trust Boundary",
+              "description": "Internal Site24x7 components"
+            },
+            "threats": []
+          }
+        ]
+      }
+    ],
+    "diagramTop": 0,
+    "reviewer": "Security Reviewer",
+    "threatTop": 2
+  }
+}
